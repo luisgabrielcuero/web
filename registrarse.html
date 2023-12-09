@@ -1,0 +1,92 @@
+{% extends 'contenido.html' %}
+{% block title %} Registrarse {% endblock %}
+{% block content %}
+<div class="nav_registro">
+  <nav class="navbar">
+      <a href="{% url 'pagina_principal' %}">volver</a>
+  </nav>
+</div>
+<!--FORMULARIO DE REGISTRO-->
+<div class="card">
+  <div class="card-body">
+    <form enctype="multipart/form-data" method="POST" class="row g-3" style="padding: 10px">
+        {% csrf_token %}
+        <div class="form-group row">
+          <div class="col">
+            <label>{{formulario.tipo_user.label}}</label>
+            {{formulario.tipo_user}}
+          </div>
+          <div class="col">
+          <div class="col">
+            <label>{{formulario.nombre.label}}</label>
+            {{formulario.nombre}}
+          </div>
+        </div>
+        <div class="form-group row" style="margin-top: 20px;">
+        <div class="col">
+          <label>{{formulario.apellido.label}}</label>
+          {{formulario.apellido}}
+        </div>
+        <div class="col">
+          <label>{{formulario.edad.label}}</label>
+          {{formulario.edad}}
+        </div>
+      </div>
+
+      <div class="form-group row" style="margin-top: 20px;">
+        <div class="col">
+          <label>{{formulario.celular.label}}</label>
+          {{formulario.celular}}
+        </div>
+        <div class="col">
+          <label>{{formulario.correo.label}}</label>
+          {{formulario.correo}}
+        </div>
+      </div>
+
+      <div class="form-group row" style="margin-top: 20px;">
+        <div class="col">
+          <label>{{formulario.tipo_documento.label}}</label>
+          {{formulario.tipo_documento}}
+        </div>
+        <div class="col">
+          <label>{{formulario.N_documento.label}}</label>
+          {{formulario.N_documento}}
+        </div>
+      </div>
+
+      <div class="form-group row" style="margin-top: 20px;">
+        <div class="col">
+          <label>{{formulario.P_formacion.label}}</label>
+          {{formulario.P_formacion}}
+        </div>
+        <div class="col">
+          <label>{{formulario.ficha.label}}</label>
+          {{formulario.ficha}}
+        </div>
+      </div>
+
+      <div class="form-group row"  style="margin-top: 20px;">
+        <div class="col">
+          <label>{{formulario.foto_perfil.label}}</label>
+          {{formulario.foto_perfil }}
+        </div>
+        <div class="col">
+          <label>{{formulario.username.label}}</label>
+          {{formulario.username}}
+        </div>
+        <div class="col">
+          <label>{{formulario.password.label}}</label>
+          {{formulario.password}}
+        </div>
+      </div>
+      <div class="botton" style="margin-top: 15px;">
+        <input name="" id="" class="btn btn-outline-success"  type="submit" value="Comfirmar Registro" style="margin-top: 12px">
+      </div>
+    </form>
+  </div> 
+</div> 
+
+        
+    {% endblock  %}
+

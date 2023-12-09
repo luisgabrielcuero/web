@@ -1,0 +1,72 @@
+{% extends 'contenido.html' %}
+{% block title %}{% endblock  %}
+{% block content %}
+  <div class="nav-usuarios">
+    <nav class="navbar-usuarios">
+        <a href="{% url 'menu_admin' %}">volver</a>
+        <a href="{% url 'NuevoUsuario' %}">nuevo usuario</a>
+    </nav>
+  </div>
+
+  <div class="card">
+          
+    <div class="card-body">
+      <div class="container">
+        <h2>Bucar Usuarios</h2>
+          <form method="get">
+              <div id="custom-search-input">
+                <div class="row">
+                  <div class="col"><br>
+                      <input type="text" class="form-control" placeholder="Buscar" name="buscar" value="{{ request.GET.buscar }}">
+                  </div>
+                  <div class="col">
+                    <span class="input-group-list">
+                      <i class="icon icon-search"></i>
+                      <button type="submit" class="btn btn-outline-success" >Buscar</button>
+                    </span>
+                  </div>
+              </div>
+            </div>
+          </form>
+      </div>
+              <h4 class="card-title">Usuarios</h4>
+              
+             
+              <div class="table-responsive">
+                  <table class="table table-primary">
+                      <thead>
+                        <tr>
+                          <th>id_tipo_usuario</th>
+                          <th>nombre</th>
+                          <th>apellido</th>
+                          <th>correo</th>
+                          <th>P_formacion</th>
+                          <th >ficha</th>
+                          <th>foto_perfil</th>
+                          <th>nombre_usuario</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for usuarios in usuario %}
+              <tr>
+                <td data-label="tipo_user">{{ usuarios.tipo_user }}</td>
+                <td data-label="nombre">{{ usuarios.nombre }}</td>
+                <td data-label="apellido">{{ usuarios.apellido }}</td>
+                <td data-label="correo">{{ usuarios.correo }}</td>
+                <td data-label="P_formacion">{{ usuarios.P_formacion }}</td>
+                <td data-label="ficha">{{ usuarios.ficha }}</td>
+                <td data-label="foto_perfil">
+                  <img src="{{ usuarios.foto_perfil.url }}" height="50" />
+                </td>
+                <td data-label="nombre_usuario">{{ usuarios.username }}</td>
+              </tr> 
+              {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+              
+              
+          </div>
+      </div>
+      {% endblock  %}

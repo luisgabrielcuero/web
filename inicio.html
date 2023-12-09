@@ -1,0 +1,95 @@
+{% extends 'contenido.html' %}
+<!doctype html>
+{% block title %}Moni-Web{% endblock  %}
+{% block content %}
+{% include 'navs/base.html' %}
+    <!--Imagen de portada-->
+    <header class="header">
+        {% load static %}
+        <img src="{% static 'img/postulate.jpeg' %}" style="width: 1000px; height: 500px" /> 
+    </header>
+    <!--TEXTO-->
+    <section class="sau">
+        <h2 class="title">Convocatorias abiertas</h2>
+        <p>Ten en cuenta las fechas de apertura y de cierre para no perder esta gran oportumnidad oportunidad </p>
+    </section>
+    <!--BUSCAR-->
+    <div class="card">
+          
+        <div class="card-body">
+          <div class="container">
+            <h2>Bucar Usuario</h2>
+              <form method="get">
+                  <div id="custom-search-input">
+                    <div class="row">
+                      <div class="col"><br>
+                          <input type="text" class="form-control" placeholder="Buscar" name="buscar" value="{{ request.GET.buscar }}">
+                      </div>
+                      <div class="col">
+                        <span class="input-group-list">
+                          <i class="icon icon-search"></i>
+                          <button type="submit" class="btn btn-outline-success" >Buscar</button>
+                        </span>
+                      </div>
+                  </div>
+                </div>
+              </form>
+          </div
+    </div>
+
+    <div class="box-container">
+    {% for convocatorias in convocatorias %}
+    <div class="card" style="width: 35rem; padding: 10px; margin: 0 auto; margin-top: 40px ;">
+    <img src="{{ convocatorias.imagen.url }}" height="200" />
+        <div class="card-body">
+            <h2 class="card-title">{{ convocatorias.Titulo }}</h2>
+            <h5 class="card-title">Fecha de inicio</h5>
+            <p>{{ convocatorias.fecha_apertura }}</p> 
+            <h5 class="card-title">Fecha de cierre</h5>
+            <p>{{ convocatorias.fecha_cierre}}</p>
+        </div>
+
+        <table class="table">
+            <thead>
+              <button type="button"class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="fat">POSTULARSE</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">POSTULARSE</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                        
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">REQUISITOS PARA HOJA DE VIDA</label>
+                            {% include 'fromulariopostularse.html' %}
+                        </div>
+
+                        <div class="col">
+                            <input type="file" class="form-control" aria-label="file example" required>
+                            <div class="invalid-feedback">Example invalid form file feedback</div>
+                        </div>
+
+                        </div>
+                        <div class="modal-footer">
+                        <button class="btn btn-outline-danger" data-bs-dismiss="modal">CANCELAR </button>
+                        <a name="" id=""class="btn btn-outline-success" href="http://127.0.0.1:8000/volver/" role="button">ENVIAR</a><br>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+            </thead>
+          </table>
+    </div>
+
+{% endfor %}
+</div>
+
+
+<footer>
+<h3>V.4</h3>
+</footer>
+
+{% endblock  %}

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <header>
+    <!-- place navbar here -->
+    <div class="head" style="">
+        <nav class="navbar">
+            <a href="{% url 'usuarios' %}">volver</a>
+        </nav>
+    </div>
+    <style>
+      .head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 63px;
+          background: #42b91b;
+          #position: fixed;
+          width: 100%;
+          z-index: 100;
+      }
+      .navbar a {
+          display: block;
+          padding: 20px 20px;
+          color: rgb(0, 0, 0);
+          text-decoration: none;
+          text-transform: uppercase;
+          font-size: 20px;
+      }
+      .navbar {
+          display: flex;
+          margin-right: 10px;
+      }
+      .navbar a:hover {
+          background: #fff; /***** al pasar el mouse cambia de color el boton *****/
+          color: black;
+      }
+      
+      @media (max-width: 768px) {
+      
+        .title {
+            margin-bottom: 0;
+            font-size: 40px;
+        }
+      
+        .sau {
+            height: 100vh;
+        }
+      
+        .navbar {
+            display: none;
+        }
+       
+        
+      }
+      </style>
+  </header>
+  <main>
+
+
+
+
+    {% block contenido %}
+    <div class="card">
+      <div class="card-body">
+        <form enctype="multipart/form-data" method="POST" class="row">
+            {% csrf_token %}
+            <div class="form-group row">
+              <div class="col">
+                <label>{{formulario.tipo_user.label}}</label>
+                {{formulario.tipo_user}}
+              </div>
+              <div class="col">
+              <div class="col">
+                <label>{{formulario.nombre.label}}</label>
+                {{formulario.nombre}}
+              </div>
+              
+            </div>
+            <div class="form-group row" style="margin-top: 20px;">
+            <div class="col">
+              <label>{{formulario.apellido.label}}</label>
+              {{formulario.apellido}}
+            </div>
+            <div class="col">
+              <label>{{formulario.edad.label}}</label>
+              {{formulario.edad}}
+            </div>
+          </div>
+          <div class="form-group row" style="margin-top: 20px;">
+            <div class="col">
+              <label>{{formulario.celular.label}}</label>
+              {{formulario.celular}}
+            </div>
+            <div class="col">
+              <label>{{formulario.correo.label}}</label>
+              {{formulario.correo}}
+            </div>
+          </div>
+          <div class="form-group row" style="margin-top: 20px;">
+            <div class="col">
+              <label>{{formulario.tipo_documento.label}}</label>
+              {{formulario.tipo_documento}}
+            </div>
+            <div class="col">
+              <label>{{formulario.N_documento.label}}</label>
+              {{formulario.N_documento}}
+            </div>
+          </div>
+          <div class="form-group row" style="margin-top: 20px;">
+            <div class="col">
+              <label>{{formulario.P_formacion.label}}</label>
+              {{formulario.P_formacion}}
+            </div>
+            <div class="col">
+              <label>{{formulario.ficha.label}}</label>
+              {{formulario.ficha}}
+            </div>
+          </div>
+          <div class="form-group row" style="margin-top: 20px;">
+            <div class="col">
+              <label>{{formulario.foto_perfil.label}}</label>
+              {{formulario.foto_perfil }}
+            </div>
+            <div class="col">
+              <label>{{formulario.username.label}}</label>
+              {{formulario.username}}
+            </div>
+            <div class="col">
+              <label>{{formulario.password.label}}</label>
+              {{formulario.password}}
+            </div>
+          </div>
+          <div class="botton" style="margin-top: 15px;">
+            <input class="btn btn-outline-success"  type="submit" value="Crear Usuario" style="margin-top: 12px">
+          </div>
+        </form>
+      </div> 
+    </div>  
+            
+        {% endblock  %}
+
+
+  </main>
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>
+    {% block title %}{% endblock  %}
+  </title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!--STYLE DEL MUNU DEL ADMIN-->
+    <style>
+        .head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 63px;
+            background: #42b91b;
+            #position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        .logo {
+            margin-left: 30px;
+        }
+        
+        .logo a {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+        .navbar a {
+            display: block;
+            padding: 20px 20px;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+        .navbar {
+            display: flex;
+            margin-right: 10px;
+        }
+        .navbar a:hover {
+            background: #fff; /***** al pasar el mouse cambia de color el boton *****/
+            color: black;
+        }
+        
+        @media (max-width: 768px) {
+        
+          .title {
+              margin-bottom: 0;
+              font-size: 40px;
+          }
+        
+          .sau {
+              height: 100vh;
+          }
+        
+          .navbar {
+              display: none;
+          }
+         
+          
+        }
+        </style>
+    <!--STYLE DE LA TABLA USUARIOS-->
+    <style>
+        @media (max-width: 1100px){
+          .table{
+            border: 0px;
+          }
+          .table caption{
+            font-size: 12px;
+          }
+          .table thead{
+            display: none;
+          }
+          .table tr{
+            margin-bottom: 8px;
+            border-bottom: 4px solid #ddd;
+          }
+          .table th, table td{
+            font-size: 12px;
+          }
+          .table td{
+            display: block;
+            border-bottom: 1px solid #ddd;
+            text-align: right;
+          }
+          .table td:last-child{
+            border-bottom: 0px;
+          }
+          .table td::before{
+            content: attr(data-label);
+            font-weight: bold;
+            text-transform: uppercase;
+            float: left;
+          }
+          
+        }
+        
+      </style>
+    <!--Style de usuarios-->
+    <style>
+        .nav-usuarios {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 63px;
+            background: #42b91b;
+            #position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        .navbar-usuarios a {
+            display: block;
+            padding: 20px 20px;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+        .navbar-usuarios {
+            display: flex;
+            margin-right: 10px;
+        }
+        .navbar-usuarios a:hover {
+            background: #fff; /***** al pasar el mouse cambia de color el boton *****/
+            color: black;
+        }
+        
+        @media (max-width: 768px) {
+        
+          .title {
+              margin-bottom: 0;
+              font-size: 40px;
+          }
+        
+          .sau {
+              height: 100vh;
+          }
+        
+          .navbar-usuarios {
+              display: none;
+          }
+         
+          
+        }
+        </style>
+   <!--style de formulario login-->
+<style>
+    .form-register{
+        width: 400px;
+        background-color: rgb(247, 244, 244);
+        padding: 30px;
+        margin: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .form-register h4{
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    .controls{
+        width: 100%;
+    }
+    .form-register p{
+        height: 40px;
+        text-align: center;
+        font-size: 18px;
+    }
+    .form-register a{
+        color: blue;
+        text-decoration: none;
+    }
+    .form-register button{
+        width: 100%;
+        border: none;
+        padding: 12px;
+        margin: 16px 0; 
+    }
+</style>
+    <!--nav LOGIN-->
+    <style>
+        .navlogin {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 63px;
+            background: #42b91b;
+            #position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        .logo {
+            margin-left: 30px;
+        }
+        
+        .logo a {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+        .navbar a {
+            display: block;
+            padding: 20px 20px;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+        .navbar {
+            display: flex;
+            margin-right: 10px;
+        }
+        .navbar a:hover {
+            background: #fff; /***** al pasar el mouse cambia de color el boton *****/
+            color: black;
+        }
+        
+        @media (max-width: 768px) {
+        
+          .title {
+              margin-bottom: 0;
+              font-size: 40px;
+          }
+        
+          .sau {
+              height: 100vh;
+          }
+        
+          .navbar {
+              display: none;
+          }
+         
+          
+        }
+        </style>
+    <style>
+        //PAGINA DE INICIO
+        .card{
+            display: flex;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header img{
+            height: 300px;
+            margin-top: 30px;
+        }
+        .title {
+            margin-bottom: 40px;
+            font-size: 60px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+        
+        p {
+            margin-bottom: 40px;
+            font-size: 18px;
+            color: rgb(0, 0, 0);
+            padding: 0 100px;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 40px;
+            border: 2px solid  #42b91b;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            background: #42b91b;
+        }
+        
+        .sau {
+            padding: 30px;
+            background: #fff
+        }
+        
+        .box-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            text-align: center;
+        
+        }
+        
+        .box-container .box {
+            height: 11rem;
+            width: 17rem;
+            background: #ffffff;
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 .3rem 5rem rgba(0, 0 , 0, .5);
+            margin: 2rem;   
+        }
+        
+        .box-container .box i {
+            height: 3rem;
+            width: 3rem;
+            line-height: 3rem;
+            text-align: center;
+            border-radius: 50%;
+            color: #fff;
+            background: #42b91b;
+            font-size: 2rem;
+            margin: 1rem 0;
+        
+        }
+        
+        .box-container .box h3 {
+            font-size: 20px;
+            color:  #42b91b;
+        
+        }
+        
+        .box-container .box p {
+            padding: 0 15px;
+            font-size: 16px;
+        }
+        .box button:hover{
+            background-color: #fff;
+        }
+        
+        button{
+            background-color: #42b91b;
+            border: none;
+        }
+        
+        
+        @media (max-width: 768px) {
+        
+            .title {
+                margin-bottom: 0;
+                font-size: 40px;
+            }
+        
+            .sau {
+                height: 100vh;
+            }
+        
+            .navbar {
+                display: none;
+            }
+           
+            
+        }
+        
+        footer{
+            color: rgb(131, 125, 125);
+            text-align: left;
+            position: absolute;
+        }
+        // FIN DE LA PAGINA DE INICIO
+    </style>
+    <!--style de registro-->
+    <style>
+        .navbar a {
+          display: block;
+          padding: 15px 15px;
+          color: rgb(0, 0, 0);
+          text-decoration: none;
+          text-transform: uppercase;
+          font-size: 20px;
+      }
+        .nav_registro {
+            align-items: center;
+            justify-content: space-between;
+            height: 50px;
+            background: #42b91b;
+            #position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        .navbar a {
+            display: block;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+        .navbar {
+            display: flex;
+        }
+        .navbar a:hover {
+            background: #fff; /***** al pasar el mouse cambia de color el boton *****/
+            color: black;
+        }
+        
+        @media (max-width: 768px) {
+        
+          .title {
+              margin-bottom: 0;
+              font-size: 40px;
+          }
+        
+          .sau {
+              height: 100vh;
+          }
+        
+          .navbar {
+              display: none;
+          }
+         
+          
+        }
+        </style>
+
+
+    
+
+</head>
+<body>
+  <main>
+    {% block content %}{% endblock  %}
+
+  </main>
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

@@ -1,13 +1,93 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moni-Web</title>
-  </head>
-  <body class="bg-gray-100 min-h-screen">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+{% extends 'contenido.html' %}
+
+{% block content %} 
+{% include 'navs/navConvocatorias.html' %}
+
+<div class="card">
+          
+  <div class="card-body">
+    <div class="container">
+      <h2>Bucar </h2>
+        <form method="get">
+            <div id="custom-search-input">
+              <div class="row">
+                <div class="col"><br>
+                    <input type="text" class="form-control" placeholder="Buscar" name="buscar" value="{{ request.GET.buscar }}">
+                </div>
+                <div class="col">
+                  <span class="input-group-list">
+                    <i class="icon icon-search"></i>
+                    <button type="submit" class="btn btn-outline-success" ">Buscar</button>
+                  </span>
+                </div>
+            </div>
+          </div>
+        </form>
+    </div>
+        <div class="table-responsive" style="margin-top: 30px;">
+            <table class="table table-primary">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">imagen</th>
+                        <th scope="col">fecha_apertura</th>
+                        <th scope="col">hora de apertura</th>
+                        <th scope="col">fecha_cierre</th>
+                        <th scope="col">Requisitos</th>
+                        <th scope="col">Acciones</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for convocatoriass in convocatorias %}
+        <tr>
+            <td>{{ convocatoriass.id }}</td>
+            <td>{{ convocatoriass.Titulo }}</td>
+            <td>
+                <img src="{{ convocatoriass.imagen.url }}" height="70" />
+            </td>
+            <td>{{ convocatoriass.fecha_apertura }}</td>
+            <td>{{ convocatoriass.hora_apertura }}</td>
+            <td>{{ convocatoriass.fecha_cierre}}</td>
+            <td>{{ convocatoriass.InformacionConvocatoria }}</td>
+            <td>
+              <a class="btn btn-outline-success" " href="{% url 'editarC' convocatoriass.id_convocatoria %}" role="button">Editar</a>
+              
+                <button type="button" id="btn-eliminar" data-id="{{convocatoriass.id_convocatoria}}" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{convocatoriass.id_convocatoria}}">Eliminar</a> 
+                <!-- Button trigger modal -->
+                
+            </td>
+
+            <div class="modal fade" id="deleteModal{{convocatoriass.id_convocatoria}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel{{convocatoriass.id_convocatoria}}">Eliminar Convocatoria</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>¿Estas seguro que deseas eliminar esta Convocatoria?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <form id="form-delete-convo" method="POST" action="{% url 'eliminarconvo' convocatoriass.id_convocatoria %}">
+                      {% csrf_token %}
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-primary">Aceptar</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    <!-- Modal -->
+    
+    
+{% endblock %}

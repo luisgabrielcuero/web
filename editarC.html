@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Datos del Usuario</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        h2{
+            font-size: 22px;
+        }
+        .head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 63px;
+          background: #42b91b;
+          #position: fixed;
+          width: 100%;
+          z-index: 100;
+      }
+      .navbar a {
+          display: block;
+          padding: 20px 20px;
+          color: rgb(0, 0, 0);
+          text-decoration: none;
+          text-transform: uppercase;
+          font-size: 20px;
+      }
+      .navbar {
+          display: flex;
+          margin-right: 10px;
+      }
+      .navbar a:hover {
+          background: #fff; /***** al pasar el mouse cambia de color el boton *****/
+          color: black;
+      }
+      
+      @media (max-width: 768px) {
+      
+        .title {
+            margin-bottom: 0;
+            font-size: 40px;
+        }
+      
+        .sau {
+            height: 100vh;
+        }
+      
+        .navbar {
+            display: none;
+        }
+       
+        
+      }
+    </style>
+</head>
+
+<body>
+  <div class="head" style="">
+    <nav class="navbar">
+        <a href="{% url 'convocatorias' %}">volver</a>
+    </nav>
+</div>
+<div class="collapse" id="navbarToggleExternalContent">
+  <div class="bg-success p-4">
+    <h5 class="text-white h4">Collapsed content</h5>
+    <span class="text-muted">Toggleable via the navbar brand.</span>
+  </div>
+</div>
+<nav class="navbar navbar-success bg-success">
+  <div class="container-fluid">
+    <button  style="#42b91b" type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+     Editar
+     
+     
+    </button>
+
+    <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Nueva Convocatoria</h1>
+         
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">-
+
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Nueva Convocatoria</h1>
+
+<div class="card col-20">
+  <form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    
+      {% for campo in formulario %}
+      <div class="mb-20">
+          <label for="" class="form-label">{{ campo.label }}</label>
+                    {% if campo.field.widget.input_type == 'file' and campo.value %}
+                    <img src="{{ MEDIA_URL}}/imagenes/{{ campo.value }}" width="100" alt="" srcset="">
+                    {% endif %}
+                  <input 
+                    type="{{ campo.field.widget.input_type }}" 
+                    class="form-control" 
+                    name="{{ campo.name}}" 
+                    id=""
+                    aria-describedby="helpId"
+                    placeholder="{{ campo.label }}"
+                    value="{{ campo.value | default:'' }}"
+                    />
+        </div>
+        <div class="col-20 help-text"> {{ campo.errors}}</div>
+      {% endfor %}
+      <input name="" id=""class="btn btn-outline-success" type="submit" value="actualizar datos">
+    </div>
+  </form>
+</div>
+
+
+
+     
+      -</div>
+     </div>
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </div>
+</nav>
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
+
+
+
